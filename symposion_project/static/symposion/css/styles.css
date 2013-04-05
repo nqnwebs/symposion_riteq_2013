@@ -1,0 +1,11 @@
+#masthead h1 {
+    background-image: url("../img/riteq_logo.png");
+    background-repeat: no-repeat;
+    padding-bottom: 24px;
+    padding-left: 205px;
+    padding-top: 33px;
+}
+
+h1, h2, P, .nav, .container {
+    font-family: 'Nunito';
+}
