@@ -10,6 +10,8 @@
 
 {% block style_base %}
     <link href="{% static "symposion/css/symposion.css" %}" rel="stylesheet">
+    <link href="{% static "symposion/css/styles.css" %}" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     {% block extra_style %}{% endblock %}
 {% endblock %}
 
@@ -27,33 +29,33 @@
                 <ul class="nav nav-pills">
                     {% if not request.user.is_authenticated %}
                         <li>
-                            <a href="{% url account_login %}">Log in</a>
+                            <a href="{% url account_login %}">Ingresar</a>
                         </li>
                         <li>
-                            <a href="{% url account_signup %}">Sign up</a>
+                            <a href="{% url account_signup %}">Registrarse</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="{% url dashboard %}">Dashboard</a>
+                            <a href="{% url dashboard %}">Panel</a>
                         </li>
                         <li>
-                            <a href="{% url account_settings %}">Settings</a>
+                            <a href="{% url account_settings %}">Cuenta</a>
                         </li>
                         {% if request.user.is_staff %}
                             <li>
-                                <a href="{% url admin:index %}">Admin</a>
+                                <a href="{% url admin:index %}">Administrar</a>
                             </li>
                         {% endif %}
                         <li>
-                            <a id="logout_link" href="{% url account_logout %}" data-form-submit="#account_logout_form">Log out</a>
+                            <a id="logout_link" href="{% url account_logout %}" data-form-submit="#account_logout_form">Salir</a>
                         </li>
                         <form id="account_logout_form" class="hide" action="{% url account_logout %}" method="post">{% csrf_token %}</form>
                     {% endif %}
                 </ul>
             </div>
-            
+
             <h1><a href="{% url home %}">{{ SITE_NAME }}</a></h1>
-            <h2><a href="{% url home %}"><span style="font-weight: 200;">Some amazing location, February 31st</span></a></h2>
+            <h2><a href="{% url home %}"><span style="font-weight: 100;">III Reunión Interdisciplinaria de Tecnología y Procesos Químicos</span></a></h2>
         </header>
         <div class="navbar">
             <div class="navbar-inner">
@@ -77,11 +79,11 @@
 {% block body_base %}
     <div class="container">
         {% include "_messages.html" %}
-        
+
         {# {% block breadcrumbs %} #}
             {# {% sitetree_breadcrumbs from "main" %} #}
         {# {% endblock %} #}
-        
+
         {% block body_outer %}
             <div class="row">
                 <div class="span9">
@@ -89,6 +91,18 @@
                     {% endblock %}
                 </div>
                 <div class="span3">
+
+                <div class="well">
+                    <a href="/account/signup/" class="btn btn-large btn-block btn-primary">
+                        <large>Inscribite</large></br>
+                        <small>Cupos limitados</small>
+                    </a>
+                    <a href="/sponsors/apply/" class="btn btn-large btn-block ">
+                        Auspiciá el evento
+                    </a>
+
+                </div>
+
                     {% block sidebar %}
                         {% include "_default_sidebar.html" %}
                     {% endblock %}
