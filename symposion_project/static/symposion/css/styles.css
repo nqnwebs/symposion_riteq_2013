@@ -1,11 +1,20 @@
-#masthead h1 {
-    background-image: url("../img/riteq_logo.png");
+#masthead {
+    height: 157px;
+    width: 940px;
+    background-image: url("../img/riteq_header.png");
     background-repeat: no-repeat;
-    padding-bottom: 24px;
-    padding-left: 205px;
-    padding-top: 33px;
+    margin-bottom: 2px;
 }
 
-h1, h2, P, .nav, .container {
-    font-family: 'Nunito';
+header a, header a:visited {
+    color: rgb(255, 255, 255);
 }
+
+header a:hover {
+    color: rgb(33, 33, 33);
+}
+
+#masthead h1, #masthead h2 {
+    display: none;
+}
+
