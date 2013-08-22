@@ -139,6 +139,7 @@ INSTALLED_APPS = [
     "django_forms_bootstrap",
 
     # external
+    "django_extensions",
     "debug_toolbar",
     "mailer",
     "timezones",
@@ -185,6 +186,10 @@ ACCOUNT_SIGNUP_REDIRECT_URL = "dashboard"
 ACCOUNT_LOGIN_REDIRECT_URL = "dashboard"
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 ACCOUNT_USER_DISPLAY = lambda user: user.email
+
+AUTH_PROFILE_MODULE = 'symposion.UserProfile'
+
+
 
 AUTHENTICATION_BACKENDS = [
     # Permissions Backends

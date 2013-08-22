@@ -7,17 +7,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 import account.views
-
+from symposion.models import UserProfile
 import symposion.forms
 
 
 class SignupView(account.views.SignupView):
-    
+
     form_class = symposion.forms.SignupForm
     form_kwargs = {
         "prefix": "signup",
     }
-    
+
     def create_user(self, form, commit=True):
         user_kwargs = {
             "first_name": form.cleaned_data["first_name"],
@@ -38,6 +38,29 @@ class SignupView(account.views.SignupView):
             except User.DoesNotExist:
                 break
         return username
+
+    def after_signup(self, form):
+        self.create_profile(form)
+        super(SignupView, self).after_signup(form)
+
+    def create_profile(self, form):
+        try:
+            profile = self.created_user.get_profile()
+        except:
+            profile = UserProfile.objects.create(user=self.created_user)
+        extra = ["dni",
+                 "direccion",
+                 "localidad",
+                 "provincia",
+                 "pais",
+                 "institucion",
+                 "categoria"]
+        for field in extra:
+            setattr(profile, field, form.cleaned_data[field])
+
+        profile.save()
+
+
 
 
 class LoginView(account.views.LoginView):
